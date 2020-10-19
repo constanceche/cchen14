@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<!-- 
+  Team Owl (Constance Chen, Winnie Huang, Erin Lee)
+  SoftDev -- Rona Ed.
+  K13: Template for Success: Using templating/jinja/flask, re-do the occupations assignment integrating python and HTML.
+  Due Oct 19 2020 
+ -->
+
+<html>
+
+  <head>
+    <title>Random Occupation Selection</title>
+  </head>
+
+  <body>
+    <h3>Team Owl (Constance Chen, Winnie Huang, Erin Lee)</h3>
+    <p>This prints a random occupation from the occupations.csv based on the chance associated with them, and also prints a list of all the occupations in table format, using templating to more easily integrate html with the python code.</p>
+    <h4>Random Occupation: {{ result }}</h4>
+    <table>
+      <tr>
+        <th>List of Occupations</th>
+      </tr>
+      {% for occup in dict %}
+      <tr><td>{{ occup }}</td></tr>
+      {% endfor %}
+    </table>
+  </body>
+
+</html>

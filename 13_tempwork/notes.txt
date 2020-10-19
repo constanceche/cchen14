@@ -1,0 +1,12 @@
+Team Owl (Constance Chen, Winnie Huang, Erin Lee)
+SoftDev -- Rona Ed.
+K13: Template for Success: Using templating/jinja/flask, re-do the occupations assignment integrating python and HTML.
+Due Oct 19 2020 
+
+> worked with table formatting (and structure) to properly integrate the for loop of the template.
+> personalized parameters of render_template for the tablified.html, the dictonary of occupations, and the chosen random occupation.
+> separating the HTML and the python code really streamlined the process since there was no more lingerng bits of HTML code in the return statements
+
+> Where the HTML tags and for loops ({% %}) are placed are super important! Logic has to be thought through
+> Code is only as good as the collaboration!
+> You have to remove your personal opinions/issues when you're doing the work/coding
