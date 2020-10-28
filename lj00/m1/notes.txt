@@ -1,0 +1,28 @@
+Database: structured way to store and access data 
+- NoSQL database: any datat that does not use tables of datas 
+
+MongoDB: NoSQL document database 
+- data stored in collections of documents
+
+Document: a way to organize and store data as a set of field-value pairs.
+- Field: a identifier for a datapoint
+- Value: data related to a given identifier
+
+Collection: an organized store of documents in MongoDB
+- usually with common fields between documents
+- collections hold documents
+- databases hold collections
+
+Atlas: cloud database used at the core of MongoDB
+- manage cluster creation
+- run and maintain database deplyment
+- use cloud service provider of choice
+
+Clusters: groups of servers taht stores data
+Replica set:  few connected machines that store the same data to
+- ensure that if something happens to one of the machines the data will remain intact
+- Instance: a single machine locally or in the cloud
+   - runs a certain software (ex. the MongoDB database)
+
+username: m001-student
+password: m001-mongodb-basics

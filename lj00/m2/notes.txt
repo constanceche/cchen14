@@ -1,0 +1,77 @@
+JSON: Javascript standard Object Notation
+- can be natively stored in MongoDB
+- start and end with {}
+- separate each key and value with :
+- separate each key:colon pair with ,
+- "keys" surounded by "" - also known as fields
+ex. 
+{
+    "_id" : "10021-2015-ENFO",
+    "certificate_number" : 9278806,
+    "buisness_name" : "ATLIXCO DELI",
+    "address" : {
+        "city" : "RIDGEWOOD",
+        "zip" : 11385,
+    }
+}
+
+BSON: Binary JSON
+- birdges gap between binary representation and JSON format
+- stores data interally and over network
+- provides additonal features like speed and flexibiilty
+
+Importing and Exporting -------
+
+JSON:
+- mongoimport: imports data in JSON
+- mongoexport: exports data in JSON
+
+BSON:
+- mongorestore: imports data in BSON
+- mongodump: exports data in BSON
+
+URI String: Uniform Resource Identifier
+ex. mongodc+srv://user:password@slusterURI.mongodb.net/database
+- srv: establishes a secure connection
+- added username password
+- @ Atlas cluster
+- database name
+
+ex. 
+    mongodump --uri "mongodb+srv://<your username>:<your password>@<your cluster>.mongodb.net/sample_supplies"
+    mongoexport --uri="mongodb+srv://<your username>:<your password>@<your cluster>.mongodb.net/sample_supplies" --collection=sales --out=sales.json
+    mongorestore --uri "mongodb+srv://<your username>:<your password>@<your cluster>.mongodb.net/sample_supplies"  --drop dump
+    mongoimport --uri="mongodb+srv://<your username>:<your password>@<your cluster>.mongodb.net/sample_supplies" --drop sales.json
+
+Data Explorer ---------
+
+Namespace: concatenation of the database name and collection name
+
+- Atlas UI provides us with Data Explorer so we can query data using GUI
+- queries must use valid JSON
+- returned documents will contain the requested field:value pairs
+
+Find Command ----------
+
+Conntect to Atlas Cluster: 
+    mongo "mongodb+srv://<username>:<password>@<cluster>.mongodb.net/admin"
+
+    show dbs
+    use sample_training
+    show collections
+    db.zips.find({"state": "NY"})
+
+it: iterates through the cursor
+- cursor: an object that the find command returns
+  - a pointer to a result set of a query
+- pointer: a direct address of the memory location
+
+find(): returns a cursor with documents that match a find query
+count(): returns the number of documents that match the find query
+pretty(): formats the documents in the cursor
+    db.zips.find({"state": "NY"}).count()
+    db.zips.find({"state": "NY", "city": "ALBANY"})
+    db.zips.find({"state": "NY", "city": "ALBANY"}).pretty()
+
+    db.trips.find({"birth year": 1961,"start station name" : "Howard St & Centre St"}).pretty()
+    db.inspections.find({"date": "Feb 20 2015"}).count()
