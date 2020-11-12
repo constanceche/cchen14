@@ -1,0 +1,143 @@
+Constance Chen
+SoftDev 
+LJ01: Le Voyage de Learnination avec Mongo, Deuxième Phase
+    Chapter 3 of Mongo Course
+Due Nov 12 2020 
+
+Inserting New Documents
+- every document must have a unique _id value
+- "_id" is required in every MongoDB document
+- ObjectId(): Default value for the _id field unless otherwise stated
+    ex. "_id": ObjectId("5ec5f1b7...")
+
+insert() and errors - 
+
+    (connect to atlas cluster)
+    mongoimport --uri="mongodb+srv://<username>:<password>@<cluster>.mongodb.net/sample_supplies" sales.json
+    mongo "mongodb+srv://<username>:<password>@<cluster>.mongodb.net/admin"
+
+    (navigate to the database that we need)
+    use sample_training
+
+    (get a random document from the collection)
+    db.inspections.findOne();
+
+    (copy the document and try to insert in into the collection)
+    db.inspections.insert({
+        "_id" : ObjectId("56d61033a378eccde8a8354f"),
+        "id" : "10021-2015-ENFO",
+        "certificate_number" : 9278806,
+        "business_name" : "ATLIXCO DELI GROCERY INC.",
+        "date" : "Feb 20 2015",
+        "result" : "No Violation Issued",
+        "sector" : "Cigarette Retail Dealer - 127",
+        "address" : {
+                "city" : "RIDGEWOOD",
+                "zip" : 11385,
+                "street" : "MENAHAN ST",
+                "number" : 1712
+            }
+    })
+
+    (remove _id)
+    db.inspections.insert({
+        "id" : "10021-2015-ENFO",
+        "certificate_number" : 9278806,
+        "business_name" : "ATLIXCO DELI GROCERY INC.",
+        "date" : "Feb 20 2015",
+        "result" : "No Violation Issued",
+        "sector" : "Cigarette Retail Dealer - 127",
+        "address" : {
+                "city" : "RIDGEWOOD",
+                "zip" : 11385,
+                "street" : "MENAHAN ST",
+                "number" : 1712
+            }
+    })
+
+    (search for _id)
+    db.inspections.find({"id" : "10021-2015-ENFO", "certificate_number" : 9278806}).pretty()
+
+    - identical documents can exist in the same collection as long as their _id values are different
+    - schema validation functionality allows you to enforce document structure
+
+insert() order:
+
+    (example) 
+    db.inspections.insert([ { "test": 1 }, { "test": 2 }, { "test": 3 } ])
+
+    (specify _id values)
+    db.inspections.insert([{ "_id": 1, "test": 1 },{ "_id": 1, "test": 2 },
+                        { "_id": 3, "test": 3 }])
+
+    (find documents with _id: 1)
+    db.inspections.find({ "_id": 1 })
+
+    (insert multiple documents specifying the _id values, and using the "ordered": false option.)
+    db.inspections.insert([{ "_id": 1, "test": 1 },{ "_id": 1, "test": 2 },
+                        { "_id": 3, "test": 3 }],{ "ordered": false })
+
+    (insert multiple documents with _id: 1 with the default "ordered": true setting)
+    db.inspection.insert([{ "_id": 1, "test": 1 },{ "_id": 3, "test": 3 }])
+
+    (view collections in the active db)
+    show collections
+
+    (switch the active db to training)
+    use training
+
+    (view all available databases)
+    show dbs
+
+Updating Documents:
+
+mongoshell - 
+
+    (connect to atlas cluster)
+    mongo "mongodb+srv://<username>:<password>@<cluster>.mongodb.net/admin"
+
+    (use the sample_training database)
+    use sample_training
+
+    (find all documents in the zips collection where the zip field is equal to "12434")
+    db.zips.find({ "zip": "12534" }).pretty()
+
+    (find all documents in the zips collection where the city field is equal to "HUDSON")
+    db.zips.find({ "city": "HUDSON" }).count()
+
+    (update all documents in the zips collection where the city field is equal to "HUDSON" by adding 10 to the current value of the "pop" field)
+    db.zips.updateMany({ "city": "HUDSON" }, { "$inc": { "pop": 10 } })
+
+    (update a single document in the zips collection where the zip field is equal to "12534" by setting the value of the "pop" field to 17630)
+    db.zips.updateOne({ "zip": "12534" }, { "$set": { "pop": 17630 } })
+
+    (update a single document in the zips collection where the zip field is equal to "12534" by setting the value of the "popupation" field to 17630)
+    db.zips.updateOne({ "zip": "12534" }, { "$set": { "population": 17630 } })
+
+    (find all documents in the grades collection where the student_id field is 151 , and the class_id field is 339)
+    db.grades.find({ "student_id": 151, "class_id": 339 }).pretty()
+
+    (find all documents in the grades collection where the student_id field is 250 , and the class_id field is 339)
+    db.grades.find({ "student_id": 250, "class_id": 339 }).pretty()
+
+    (update one document in the grades collection where the student_id is ``250`` *, and the class_id field is 339 , by adding a document element to the "scores" array)
+    db.grades.updateOne({ "student_id": 250, "class_id": 339 },
+                        { "$push": { "scores": { "type": "extra credit",
+                                                "score": 100 }
+                                    }
+                        })
+
+- {"$inc": {"pop": 10, "<field2>": <increment value>,...}}: increments filed value by a specific amount
+- {"$set": {"pop": 17630, "<field2>": <new value>,...}}: sets filed value to a new specificed value
+- {"$push": {<field1>: <value1>,...}}: adds an element to an array field
+
+Deleting Documents and Collections:
+
+- db.<collections>.drop(): delete given collection
+- deleteOne(), deleteMany(): deletes documents that match a given query
+
+Lab:
+db.zips.find({ "city": "ALBANY", "state": "NY" }).pretty()
+db.zips.updateOne({ "city": "ALBANY", "state": "NY" }, { "$push": { "capital?": true } })
+db.zips.find({ "city": "NEW YORK CITY", "state": "NY" }).pretty()
+db.zips.updateOne({ "city": "NEW YORK CITY", "state": "NY" }, { "$push": { "capital?": false } })
