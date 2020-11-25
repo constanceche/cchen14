@@ -1,0 +1,96 @@
+Constance Chen
+SoftDev 
+LJ02: Le Voyage de Learnination avec Mongo, Troisième Phase
+    Chapter 5 of Mongo Course: Indexing and Aggregation Pipeline
+Due Nov 25 2020 
+
+AGGREGATION FRAMEWORK
+- another way to query data in MongoDB
+- $group: takes the incoming stream of data and siphons it into multiple reservoirs
+        { "$group": { "_id": <expression>,
+                      <field1>: {accumulator1>:<expression1>} }}])
+
+
+    (switch)
+    use sample_airbnb
+
+    (find all documents that have Wifi as one of the amenities - only include price and address in the resulting cursor)
+    db.listingsAndReviews.find({ "amenities": "Wifi" },
+                            { "price": 1, "address": 1, "_id": 0 }).pretty()
+
+    (using the aggregation framework find all documents that have Wifi as one of the amenities``* - only include* ``price and address in the resulting cursor.)
+    db.listingsAndReviews.aggregate([
+                                    { "$match": { "amenities": "Wifi" } },
+                                    { "$project": { "price": 1,
+                                                    "address": 1,
+                                                    "_id": 0 }}]).pretty()
+
+    (find one document in the collection and only include the address field in the resulting cursor.)
+    db.listingsAndReviews.findOne({ },{ "address": 1, "_id": 0 })
+
+    (project only the address field value for each document, then group all documents into one document per address.country value.)
+    db.listingsAndReviews.aggregate([ { "$project": { "address": 1, "_id": 0 }},
+                                    { "$group": { "_id": "$address.country" }}])
+
+    (project only the address field value for each document, then group all documents into one document per address.country value, and count one for each document in each group.)
+    db.listingsAndReviews.aggregate([
+                                    { "$project": { "address": 1, "_id": 0 }},
+                                    { "$group": { "_id": "$address.country",
+                                                    "count": { "$sum": 1 } } }
+                                    ])
+
+    db.listingsAndReviews.aggregate([ { "$group": { "_id": "$room_type" }}])
+
+SORT AND LIMIT
+- sort(): sorts data based on criteria (-1 = decreasing, 1 = increasing)
+- limit(): returns a certain document
+
+    use sample_training
+
+    db.zips.find().sort({ "pop": 1 }).limit(1)
+
+    db.zips.find({ "pop": 0 }).count()
+
+    db.zips.find().sort({ "pop": -1 }).limit(1)
+
+    db.zips.find().sort({ "pop": -1 }).limit(10)
+
+    db.zips.find().sort({ "pop": 1, "city": -1 })
+
+db.trips.find().sort({ "birth year": -1 }).limit(1).pretty()
+
+INDEXES
+- make queries more efficient
+- avoids sorting
+
+    use sample_training
+
+    db.trips.find({ "birth year": 1989 })
+
+    db.trips.find({ "start station id": 476 }).sort( { "birth year": 1 } )
+
+    db.trips.createIndex({ "birth year": 1 })
+
+    db.trips.createIndex({ "start station id": 476, "birth year": 1 })
+
+DATA MODELING
+- a way to organize fields in a document to support your application performance and querying capabilities
+- data is sorted the way it is used
+- evolving application impiles an evolving data model
+
+UPSERT
+- hybrid of insert and update
+        db.collection.updateOne({<query>},{<update>}, {"upsert":true})
+- when upsert is set to false and the query predicate returns an empty cursor then there will be no updated documents as a result of this operation.
+- when upsert is set to true and the query predicate returns an empty cursor, the update operation creates a new document using the directive from the query predicate and the update predicate.
+- by default upsert is set to false.
+
+
+    db.iot.updateOne({ "sensor": r.sensor, "date": r.date,
+                    "valcount": { "$lt": 48 } },
+                            { "$push": { "readings": { "v": r.value, "t": r.time } },
+                            "$inc": { "valcount": 1, "total": r.value } },
+                    { "upsert": true })
+
+
+

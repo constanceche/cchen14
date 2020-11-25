@@ -1,0 +1,38 @@
+Constance Chen
+SoftDev 
+LJ02: Le Voyage de Learnination avec Mongo, Troisième Phase
+    Chapter 6 of Mongo Course: Next Steps
+Due Nov 25 2020 
+
+Data Explorer:
+- Indexes: allows users to view and create indexes
+    - serves as a performance advisor
+- Schema Anti-Pattern: provide advice about your data model once enough queries have been issued 
+- Aggregation: allows us to build aggreration piplines in the UI
+    - allows us to see how the data is transformed from one stage of the pipeline to another
+- Atlas Search: enables advanced search functionality
+
+Atlas Products and Options
+- Atlas: create organizations to group projects, teams and billing
+    - each project has multiple Altalas clusters within it
+- Realm: offers services that led developers build web or mobile application
+    - integrate MongoDB Altas data into an application without the worry of managing or scaling servers
+- Charts: creates data visualizers using dashboards
+- Atlas Hierarchy: teams assigned to projects within billings and organizations
+
+Compass
+- MongoDB UI tool to explore and manipulate MongoDB data
+- connect to data source (Atlas cluster)
+    - remember to include password
+- reveals databases and collections in cluster and the information concerning them
+    - admin, config and local are automatically created for managment purposes (can ignore)
+    - view storage size, number of collections, and number of indexes, etc. 
+- Documents: view of the documents within the collection
+    - filter and view specific data
+- Aggregation: similar to Aggregation tab in the Atlas Data Explorer
+- Scheme: samples documents and analyzes their schema
+    - gives you an overview of the shape of your documents
+- Index tab: create indexes
+    - default index is _id
+- Explain Plan: explain how data was found and retrieved from the database,
+- Validation: controls what can be written in database
