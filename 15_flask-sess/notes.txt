@@ -1,0 +1,20 @@
+Third Huge Freckled Elephant
+Ethan Shenker, Constance Chen, Andrew Jiang, Saqif Abedin
+K15 - Sessions Greetings
+2020-12-12
+
+- created various variations of error messages depending how the user logged in 
+    ex. wrong username, wrong password, no input
+- redirect user to different pages depending on their login success
+- used session to remember a user's data (even if they refresh the page)
+- log out by popping the username from the session
+    - redirects user to logout page
+    - stays logged out even when page refreshes
+- secret key is super important
+    - encodes user data 
+    - allows sessions to be created
+- played with HTML details to make the page more user friendly
+    - used value to make a "logout button"
+    - changed input type to "password" to hide password visibility 
+
+- in the future: may need to find a way to keep user's information from showing in the url
