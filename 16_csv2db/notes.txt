@@ -1,0 +1,28 @@
+Third Huge Freckled Elephant
+Ethan Shenker, Constance Chen, Andrew Jiang, Saqif Abedin
+K16 - No Trouble
+2020-12-15
+
+- We can create and populate databases using SQLite commands
+    - If a database already exists, db = sqlite3.connect("school") 
+      will open pre-existing database and add on to it
+- Typing commands into the SQLite Shell will have the effect as using c.execute(command)
+    - In order to remove testing done in the shell, we deleted the database
+      all together to obtain a new blank canvas and a fresh start
+- Including a semicolon at the end of SQLite Commands are exteremely important 
+  as the command will not run without it  
+    - This applies to when using both c.execute(command) or the shell
+- It is also important to specify the data type of the value and use quotation 
+  marks around strings when inserting data or else the program will have trouble
+  running and processing the data.
+- We had some trouble with quototation marks and using F-strings
+    - After a lot of experimenting, we opted to use .format instead
+- Using INTEGER PRIMARY KEY will automatically order the values based on
+  the integer value 
+    - We chose to use Integer Primary Keys because it differentiated each 
+      student in an organized manner
+    - In our case, the values in the 'students' table were ordered based on 
+      their ID number
+    - Because the ID number was set as the Integer Primary Key previously in 
+      the 'students' table, the 'courses' table is also ordered by the ID number
+- Attempting to open SQLite files will result in unreadable text
