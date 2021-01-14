@@ -1,0 +1,56 @@
+body{ /* controls heading in html file */
+    background-color: #666666;
+    color: black;
+    font-family:"Arial", sans-serif;
+}
+
+.container{ /* period inidcate div classes, controls the center body of text*/
+    background-color: #767676;  
+    color: black;
+    padding: 10px;
+}   
+
+h1{ /* controls heading in html file */
+    background-color: #bebebe;
+    margin:auto;
+    padding: 5px;
+    text-align: center;
+}
+
+ul{ /* controls navigation bar*/
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 15%;
+    height:100%;
+    position: fixed;
+}
+
+li h3{ /* controls heading in nav bar*/
+    font-weight: bold;
+
+}
+
+li a { /* controls indivdual components in nav bar*/
+    color: #bebebe;
+    font-weight: bold;
+    display: block;
+    text-decoration: none;
+  }
+
+h2{ /* controls heading in html file */
+    margin-left: 25%;
+    font-weight: bold;
+}
+
+p{ /* controls main body of text */
+    margin-left: 25%;
+
+}
+
+.footer{ /* controls footer */
+    background-color: #565656;
+    color: #767676;  
+    text-align: right;
+    padding: 10px;
+}

@@ -1,0 +1,13 @@
+Team Poop - Constance Chen and Kelly Huang
+SoftDev -- Rona Ed.
+K18 - Filler and Finery
+Due Jan 13, 2021
+
+- External CSS file links through <link rel="stylesheet". It styles the heading and paragraphs by the name and div class by a period and the name
+- Internal CSS uses <style> within <head>, which allows the HTML and CSS content to be on the same file.
+- The formatting within <style> is the same within external file.
+- In-line can specify styling for singular elements directly within the name of the divider.
+  Ex: <div style="background-color: #767676; color: black; padding: 10px;">
+- Lorem gives a sample body of text so you can visualize what the website looks like once you put content on it.
+- You can play around with different styling in your CSS too. You can make minor tweaks, which contributes to your website's overall appearance.
+- Lots of trial and error to get everything correct
