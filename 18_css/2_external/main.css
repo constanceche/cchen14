@@ -12,6 +12,7 @@ body{ /* controls heading in html file */
 
 h1{ /* controls heading in html file */
     background-color: #bebebe;
+    color: white;
     margin:auto;
     padding: 5px;
     text-align: center;
