@@ -1,0 +1,11 @@
+Team Confusion - Alivin Wu and Constance Chen
+SoftDev
+K19 -- A RESTful Journey Skyward/Use urllib to request and recieve data from a restful api
+2021-04-05
+
+- urllib was used to load the url to be read by program
+    - returns content of webpage
+- json was necessary to convert data on page
+- areas we needed to debug:
+    - on mac, you need to install Certificates.command to get rid of certificate issue and use urllib
+    - make sure link and key are copied corrected
