@@ -12,10 +12,14 @@ app = Flask(__name__)
 
 @app.route("/") 
 def main():
+    #reads key
     with open("key_nasa.txt") as file:
         key = file.readlines()[0]
+    #adds key to end of url and opens url
     url = urllib.request.urlopen("https://api.nasa.gov/planetary/apod?api_key=" + key)
+    #processes url and returns content
     data = json.loads(url.read())
+    #define pic and info for html template
     pic = data['url']
     info = data['explanation']
     #print(data)
