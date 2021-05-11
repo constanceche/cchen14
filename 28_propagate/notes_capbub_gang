@@ -1,0 +1,38 @@
+Team gang (Andrew Jiang, Constance Chen)
+SoftDev
+K28: Bubble Bubble Toil Trouble
+2021-05-11
+
+DEMO ONE:
+- predictions: clicking on each word will produce a popup of the word
+- observation: our prediction was true
+- reads the td tag and creates an alert accordingly
+
+DEMO TWO:
+- prediction: popups will still occur but there are more "layers" to each item (item, row, table
+    - because the table popup is written last, it may override the other functions and appear first
+- observation: the popups appeared in the order: item, row, table
+
+DEMO THREE:
+- prediction: stopPropagation() determines the order of the popups
+    - passing down form parent to child
+    - including the line will break the flow of the popups
+    - only on epopup will occur (td? table?)
+- observation before uncommenting: popup appeared in order (table, cell, row)
+- observation after uncommenting: table popup appears, none after
+    - adding "true" to even listener made table first priority
+    - event.stopPropagation() prevented further popups from occuring
+
+DEMO FOUR:
+- prediction: the "trues" in the event listeners cancel each other since they are attached to each one 
+    - the original order should stay the same (td, tr, table)
+    - event.stopPropagation() prevented further popups from occuring after td
+- observation before uncommenting: popups appear in the order: table, row, item
+    - capturing instead of bubbling
+- observation after uncommenting: event.stopPropagation() prevented further popups from occuring after table
+
+
+- default is bubbling (useCapture in event listener is default to false)
+    - bubbling = child to parent to ancestor (going up tree)
+- if true is enable, capturing will take place
+    - capturing = ancestor to parent to child (going down tree)
