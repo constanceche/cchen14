@@ -1,0 +1,6 @@
+Team BEEG BAD CHAOS - Helena Williams, Stella Oh, Constance Chen
+SoftDev
+K30 -- JSorcery
+2021-05-14
+
+We spent >2 hours on this attempting to get the paddle to detect the Yoshi. However, we continued to encounter issues involving e.pageY not being defined, even though it worked in the next function as intended. Our website simply appears to play a game of one-player Pong, rather than actually playing.
